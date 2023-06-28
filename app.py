@@ -6,7 +6,7 @@ import threading
 import tempfile
 from werkzeug import utils
 
-app = Flask(__name__, template_folder = '/Users/dylansomra/Desktop/drugEfficacywithownDB/templates')
+app = Flask(__name__, template_folder = '/****/******/*****/drugEfficacywithownDB/templates')
 
 class App:
     def __init__(self):
@@ -21,7 +21,7 @@ def index():
 
 @app.route('/css/drugefficacystyle.css')
 def send_css():
-    return send_from_directory('/Users/dylansomra/Desktop/drugEfficacywithownDB/css/',
+    return send_from_directory('/****/******/*****/drugEfficacywithownDB/css/',
                                'drugefficacystyle.css')
 
 @app.route("/loading", methods=["GET", "POST"])
@@ -44,18 +44,18 @@ def process_file(file):
     app.lock.acquire()
     try:
         pharmadb = mysql.connector.connect(
-            host = 'localhost',
-            user = 'root',
-            password = 'Strength2000',
-            database = 'pharmakg'
+            host = '*******',
+            user = '*****',
+            password = '********',
+            database = '******'
             )
         cursor = pharmadb.cursor()
-#Connection Confirmation
+
         if pharmadb.is_connected():
             print("Server Connected")
         else:
             print("Not Connected")
-#Returns specific table   
+  
         query = "SELECT * FROM PharmaKGB WHERE Entity1_name IN ('escitalopram', 'sertraline', 'citalopram', 'chlorazopam', 'alprazolam') OR Entity2_name IN ('escitalopram', 'sertraline', 'citalopram', 'chlorazopam', 'alparzolam') AND Association = 'associated'"
         cursor.execute(query)
         results = cursor.fetchall()
